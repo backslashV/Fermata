@@ -332,12 +332,14 @@ public class MainActivityDelegate extends ActivityDelegate
 			if ((fail1 != null) && !isCancellation(fail1)) {
 				Log.e(fail1, "Last played track not found");
 			}
-			if ((ok == null) || !ok) showFragment(R.id.folders_fragment);
+			//if ((ok == null) || !ok) showFragment(R.id.folders_fragment);
+			if ((ok == null) || !ok) showFragment(R.id.web_browser_fragment);
 			checkUpdates();
 		});
 
 		if (!f.isDone() || f.isFailed() || !Boolean.TRUE.equals(f.peek())) {
-			showFragment(R.id.folders_fragment);
+			//showFragment(R.id.folders_fragment);
+			showFragment(R.id.web_browser_fragment);
 			setContentLoading(f);
 		}
 	}
@@ -646,7 +648,8 @@ public class MainActivityDelegate extends ActivityDelegate
 
 	public void backToNavFragment() {
 		int id = getActiveNavItemId();
-		showFragment((id == ID_NULL) ? R.id.folders_fragment : id);
+		//showFragment((id == ID_NULL) ? R.id.folders_fragment : id);
+		showFragment((id == ID_NULL) ? R.id.web_browser_fragment : id);
 	}
 
 	@Override

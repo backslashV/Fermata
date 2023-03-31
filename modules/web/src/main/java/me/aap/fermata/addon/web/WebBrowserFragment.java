@@ -70,6 +70,7 @@ public class WebBrowserFragment extends MainActivityFragment
 		ViewGroup fullScreenView = view.findViewById(R.id.browserFullScreenView);
 		FermataWebClient webClient = new FermataWebClient();
 		FermataChromeClient chromeClient = new FermataChromeClient(webView, fullScreenView);
+		chromeClient.enterFullScreen();
 		webView.init(addon, webClient, chromeClient);
 		webView.loadUrl(addon.getLastUrl());
 		MainActivityDelegate.getActivityDelegate(ctx).onSuccess(this::registerListeners);
