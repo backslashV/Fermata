@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +72,14 @@ public class WebBrowserFragment extends MainActivityFragment
 		ViewGroup fullScreenView = view.findViewById(R.id.browserFullScreenView);
 		FermataWebClient webClient = new FermataWebClient();
 		FermataChromeClient chromeClient = new FermataChromeClient(webView, fullScreenView);
-		chromeClient.enterFullScreen();
+		// Go full screen on start
+		final Handler handler = new Handler(Looper.getMainLooper());
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				chromeClient.enterFullScreen();
+			}
+		}, 1000);
 		webView.init(addon, webClient, chromeClient);
 		webView.loadUrl(addon.getLastUrl());
 		MainActivityDelegate.getActivityDelegate(ctx).onSuccess(this::registerListeners);
